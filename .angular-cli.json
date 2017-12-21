@@ -1,57 +1,81 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "project": {
-    "name": "calendarly"
-  },
-  "apps": [
-    {
-      "root": "src",
-      "outDir": "dist",
-      "assets": [
-        "assets",
-        "favicon.ico"
-      ],
-      "index": "index.html",
-      "main": "main.ts",
-      "polyfills": "polyfills.ts",
-      "test": "test.ts",
-      "tsconfig": "tsconfig.app.json",
-      "testTsconfig": "tsconfig.spec.json",
-      "prefix": "app",
-      "styles": [
-        "styles.css"
-      ],
-      "scripts": [],
-      "environmentSource": "environments/environment.ts",
-      "environments": {
-        "dev": "environments/environment.ts",
-        "prod": "environments/environment.prod.ts"
-      }
-    }
-  ],
-  "e2e": {
-    "protractor": {
-      "config": "./protractor.conf.js"
-    }
-  },
-  "lint": [
-    {
-      "project": "src/tsconfig.app.json"
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "project": {
+        "name": "calendarly"
     },
-    {
-      "project": "src/tsconfig.spec.json"
+    "apps": [{
+        "root": "src",
+        "outDir": "dist",
+        "assets": [
+            "assets",
+            "favicon.ico"
+        ],
+        "index": "index.html",
+        "main": "main.ts",
+        "polyfills": "polyfills.ts",
+        "test": "test.ts",
+        "tsconfig": "tsconfig.app.json",
+        "testTsconfig": "tsconfig.spec.json",
+        "prefix": "app",
+        "styles": [
+            "styles.css"
+        ],
+        "scripts": [
+            "assets/js/jquery-2.1.1.min.js",
+            "assets/js/bootstrap.min.js",
+            "assets/vendors/flot/jquery.flot.min.js",
+            "assets/vendors/flot/jquery.flot.resize.min.js",
+            "assets/vendors/flot/plugins/curvedLines.js",
+            "assets/vendors/sparklines/jquery.sparkline.min.js",
+            "assets/vendors/easypiechart/jquery.easypiechart.min.js",
+            "assets/vendors/fullcalendar/lib/moment.min.js",
+            "assets/vendors/auto-size/jquery.autosize.min.js",
+            "assets/vendors/fullcalendar/fullcalendar.min.js",
+            "assets/vendors/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js",
+            "assets/vendors/input-mask/input-mask.min.js",
+            "../node_modules/froala-editor/js/froala_editor.pkgd.min.js",
+            "assets/vendors/farbtastic/farbtastic.min.js",
+            "assets/vendors/fileinput/fileinput.min.js",
+            "assets/vendors/simpleWeather/jquery.simpleWeather.min.js",
+            "assets/vendors/nicescroll/jquery.nicescroll.min.js",
+            "assets/vendors/waves/waves.min.js",
+            "assets/vendors/bootstrap-growl/bootstrap-growl.min.js",
+            "assets/vendors/sweet-alert/sweet-alert.min.js",
+            "assets/js/flot-charts/curved-line-chart.js",
+            "../node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.js",
+            "assets/js/flot-charts/line-chart.js",
+            "assets/js/charts.js",
+            "assets/js/functions.js",
+            "assets/js/demo.js"
+        ],
+        "environmentSource": "environments/environment.ts",
+        "environments": {
+            "dev": "environments/environment.ts",
+            "prod": "environments/environment.prod.ts"
+        }
+    }],
+    "e2e": {
+        "protractor": {
+            "config": "./protractor.conf.js"
+        }
     },
-    {
-      "project": "e2e/tsconfig.e2e.json"
+    "lint": [{
+            "project": "src/tsconfig.app.json"
+        },
+        {
+            "project": "src/tsconfig.spec.json"
+        },
+        {
+            "project": "e2e/tsconfig.e2e.json"
+        }
+    ],
+    "test": {
+        "karma": {
+            "config": "./karma.conf.js"
+        }
+    },
+    "defaults": {
+        "styleExt": "less",
+        "component": {}
     }
-  ],
-  "test": {
-    "karma": {
-      "config": "./karma.conf.js"
-    }
-  },
-  "defaults": {
-    "styleExt": "css",
-    "component": {}
-  }
 }
