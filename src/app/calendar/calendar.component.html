@@ -37,12 +37,15 @@
     <div id="calendar"></div>
 
     <!-- Add event -->
-    <div class="modal fade" id="addNew-event" data-backdrop="static" data-keyboard="false">
+    <div class="modal fade" tabindex="-1" role="dialog" id="addNew-event" data-backdrop="static" data-keyboard="true">
         <div class="modal-dialog modal-lg">
             <form class="addEvent" role="form" [formGroup]="createPost" novalidate>
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Add a Post</h4>
+                        <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
                     </div>
                     <div class="modal-body">
                         <div class="row">

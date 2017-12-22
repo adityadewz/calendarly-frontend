@@ -10,7 +10,6 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 app.get("/", function(req, res) {
-    console.log(req)
     res.render("index.hbs")
 })
 

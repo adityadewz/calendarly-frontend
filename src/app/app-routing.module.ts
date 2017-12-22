@@ -14,7 +14,7 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 // //   { path: 'shopping-list', component: ShoppingListComponent }
 // ];
 
-const appRoutes: Routes = [
+export const appRoutes: Routes = [
   {
     path:'',
     redirectTo:'dashboard',
