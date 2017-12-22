@@ -17,7 +17,7 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 const appRoutes: Routes = [
   {
     path:'',
-    redirectTo:'calendar',
+    redirectTo:'dashboard',
     pathMatch:'full'
   },
   {

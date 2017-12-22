@@ -146,8 +146,8 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success waves-effect waves-button waves-float" id="addEvent">Save as draft</button>
-                        <button type="button" (click)="submitForm()" class="btn btn-primary waves-effect waves-button waves-float" id="addEvent">Save as ready for review</button>
+                        <button type="button" [disabled]="createPost.invalid" class="btn btn-success waves-effect waves-button waves-float" id="addEvent">Save as draft</button>
+                        <button type="button" [disabled]="createPost.invalid" (click)="submitForm()" class="btn btn-primary waves-effect waves-button waves-float" id="addEvent">Save as ready for review</button>
                         <button type="button" class="btn btn-danger waves-effect waves-button waves-float" data-dismiss="modal">Close</button>
                     </div>
                 </div>

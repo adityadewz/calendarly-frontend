@@ -13334,6 +13334,7 @@ a.thumbnail.active {
   content: "";
 }
 .four-zero {
+  background: #00BCD4;
   box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
   border-radius: 2px;
   position: absolute;

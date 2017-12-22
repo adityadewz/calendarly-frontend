@@ -18,6 +18,17 @@
         "testTsconfig": "tsconfig.spec.json",
         "prefix": "app",
         "styles": [
+            "assets/vendors/fullcalendar/fullcalendar.css",
+            "assets/vendors/animate-css/animate.min.css",
+            "assets/vendors/sweet-alert/sweet-alert.min.css",
+            "assets/vendors/material-icons/material-design-iconic-font.min.css",
+            "assets/vendors/socicon/socicon.min.css",
+            "assets/vendors/noUiSlider/jquery.nouislider.min.css",
+            "assets/vendors/farbtastic/farbtastic.css",
+            "../node_modules/froala-editor/css/froala_editor.pkgd.min.css",
+            "../node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css",
+            "../node_modules/froala-editor/css/froala_style.min.css",
+            "../node_modules/font-awesome/css/font-awesome.css",
             "styles.css"
         ],
         "scripts": [
@@ -33,6 +44,7 @@
             "assets/vendors/fullcalendar/fullcalendar.min.js",
             "assets/vendors/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js",
             "assets/vendors/input-mask/input-mask.min.js",
+            "../node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.js",
             "../node_modules/froala-editor/js/froala_editor.pkgd.min.js",
             "assets/vendors/farbtastic/farbtastic.min.js",
             "assets/vendors/fileinput/fileinput.min.js",
@@ -42,7 +54,6 @@
             "assets/vendors/bootstrap-growl/bootstrap-growl.min.js",
             "assets/vendors/sweet-alert/sweet-alert.min.js",
             "assets/js/flot-charts/curved-line-chart.js",
-            "../node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.js",
             "assets/js/flot-charts/line-chart.js",
             "assets/js/charts.js",
             "assets/js/functions.js",

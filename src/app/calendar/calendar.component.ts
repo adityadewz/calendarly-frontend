@@ -16,6 +16,12 @@ export class CalendarComponent implements OnInit  {
     {
         var dp=$('.date-picker').datetimepicker({
             format: 'DD/MM/YYYY'
+        }).on('dp.change',(e)=>
+        {
+            console.log(e)
+            this.createPost.patchValue({
+                date:e.date.toDate()
+            })
         });
 
         var tp=$('.time-picker').datetimepicker({
@@ -30,7 +36,7 @@ export class CalendarComponent implements OnInit  {
             })
         })
 
-        $('.time-picker').on('tp.change',(e)=>
+        $('.time-picker').on('dp.change',(e)=>
         {
             console.log(e)
             this.createPost.patchValue({
@@ -48,9 +54,9 @@ export class CalendarComponent implements OnInit  {
             date:this.fb.control(null,[Validators.required]),
             time:this.fb.control(null,[Validators.required]),
             topic:this.fb.group({
-                name:this.fb.control(null,[Validators.required])
+                name:this.fb.control("Topic 1,Topic 2",[Validators.required])
             }),
-            tags:this.fb.control(null,[Validators.required])
+            tags:this.fb.control("Tag A,Tag B",[Validators.required])
         })
 
      }
@@ -71,9 +77,9 @@ export class CalendarComponent implements OnInit  {
         this.initForm();
         console.log('Hello')
 
-        // this.createPost.get('description').valueChanges.subscribe(e=>{
-        //     console.log(e)
-        // })
+        this.createPost.get('time').valueChanges.subscribe(e=>{
+            console.log(e)
+        })
   }
      
      initCalendar()

@@ -6,8 +6,8 @@ gulp.task('lessToScss', function() { // used only once
         .pipe($.cssBase64())
         .pipe(gulp.dest('temporary/build'));
 });
-gulp.task('default', function() {
+gulp.task('less', function() {
     return gulp.src('temporary/less/**/*.less')
         .pipe($.less())
-        .pipe(gulp.dest('temporary/build'));
+        .pipe(gulp.dest('temporary/build/less-build'));
 });
