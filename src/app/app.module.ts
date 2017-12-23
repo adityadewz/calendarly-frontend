@@ -1,3 +1,6 @@
+import { EventsService } from './events.service';
+import { ChatModule } from './chat/chat.module';
+import { HeaderModule } from './header/header.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { CalendarModule } from './calendar/calendar.module';
 import { SidebarModule } from './sidebar/sidebar.module';
@@ -18,9 +21,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AppRoutingModule,
     SidebarModule,
     CalendarModule,
-    DashboardModule
+    DashboardModule,
+    HeaderModule,
+    ChatModule
   ],
-  providers: [],
+  providers: [EventsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

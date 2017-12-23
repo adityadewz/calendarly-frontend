@@ -1,6 +1,9 @@
+import { EventsService } from './../events.service';
 import { appRoutes } from './../app-routing.module';
-import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import { Component, Input,OnInit,SimpleChange } from '@angular/core';
+import {Router,NavigationEnd} from '@angular/router';
+declare var $:any;
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -8,16 +11,11 @@ import {Router} from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router,private eventsService:EventsService) { }
   routes=appRoutes;
-
-  // openPage(url)
-  // {
-  //   console.log(url)
-  //   this.router.navigateByUrl(url)
-  // }
-
   ngOnInit() {
   }
+
+
 
 }

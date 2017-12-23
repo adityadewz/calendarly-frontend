@@ -1,6 +1,6 @@
 <div class="container">
     <div class="block-header">
-        <h2>Calendar <small>FullCalendar is a jQuery plugin that provides a full-sized, drag & drop event calendar like the one below. It uses AJAX to fetch events on-the-fly and is easily configured to use your own feed format. It is visually customizable with a rich API.</small></h2>
+        <!-- <h2>Calendar <small>FullCalendar is a jQuery plugin that provides a full-sized, drag & drop event calendar like the one below. It uses AJAX to fetch events on-the-fly and is easily configured to use your own feed format. It is visually customizable with a rich API.</small></h2> -->
 
         <ul class="actions">
             <li>
@@ -37,7 +37,7 @@
     <div id="calendar"></div>
 
     <!-- Add event -->
-    <div class="modal fade" tabindex="-1" role="dialog" id="addNew-event" data-backdrop="static" data-keyboard="true">
+    <div class="modal fade" tabindex="-1" role="dialog" id="addNew-event" data-keyboard="true">
         <div class="modal-dialog modal-lg">
             <form class="addEvent" role="form" [formGroup]="createPost" novalidate>
                 <div class="modal-content">
@@ -65,7 +65,7 @@
                                     <span class="input-group-addon"><i class="md md-event"></i></span>
                                     <div class="dtp-container dropdown fg-line">
                                         <label for="eventName">Date Picker</label>
-                                        <input formControlName="date" type='text' class="form-control date-picker" data-toggle="dropdown" placeholder="Click here...">
+                                        <input formControlName="date" [value]="createPost.value.date | date:'dd/mm/yyyy'" type='text' class="form-control date-picker" data-toggle="dropdown" placeholder="Click here...">
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                                     <span class="input-group-addon"><i class="md md-access-time"></i></span>
                                     <div class="dtp-container dropdown fg-line">
                                         <label for="eventName">Time Picker</label>
-                                        <input formControlName="time" type='text' class="form-control time-picker" data-toggle="dropdown" placeholder="Click here...">
+                                        <input formControlName="time" [value]="createPost.value.time | date:'shortTime'" type='text' class="form-control time-picker" data-toggle="dropdown" placeholder="Click here...">
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                                 <div class="form-group" [ngClass]="{'has-success':createPost.get('topic.name').touched&&createPost.get('topic.name').valid,'has-error':createPost.get('topic.name').touched&&createPost.get('topic.name').invalid}">
                                     <label for="eventName">Topic</label>
                                     <div class="fg-line" formGroupName="topic">
-                                        <input type="text" formControlName="name" value="Topic1,Topic2" data-role="tagsinput">
+                                        <input type="text" formControlName="name" value="Topic1,Topic2" data-role="tagsinput" class="tagsinput">
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
                                 <div class="form-group" [ngClass]="{'has-success':createPost.get('tags').touched&&createPost.get('tags').valid,'has-error':createPost.get('tags').touched&&createPost.get('tags').invalid}">
                                     <label for="eventName">Tags</label>
                                     <div class="fg-line">
-                                        <input type="text" formControlName="tags" value="Tag-A,Tag-B" data-role="tagsinput">
+                                        <input type="text" formControlName="tags" value="Tag-A,Tag-B" data-role="tagsinput" class="tagsinput">
                                     </div>
                                 </div>
                             </div>
@@ -106,12 +106,14 @@
                                     <!-- [ngClass]="{'has-success':createPost.get('date').valid,'has-error':createPost.get('date').invalid}" -->
                                     <label for="eventName">Social Profile</label>
                                     <div class="fg-line">
-                                        <input type="text" value="Facebook-Global" data-role="tagsinput">
+                                        <input type="text" value="Facebook-Global" data-role="tagsinput" class="tagsinput">
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+                        <div class="has-error" *ngIf="createPost.get('description').touched&&createPost.get('description').invalid">
+                            <small class="help-block">Enter a description</small>
+                        </div>
                         <div class="card">
                             <div class="card-header">
                                 <h2>Description
@@ -124,9 +126,11 @@
 
                                 <textarea [froalaEditor] formControlName="description"></textarea>
 
-
                             </div>
+
+
                         </div>
+
                         <div class="card">
                             <div class="card-header">
                                 <h2>Attach Post <small>Write your post in your favorite word processor or design software and drag it here or click below to attach files for your colleagues to provide feedback on.</small></h2>
@@ -145,12 +149,17 @@
                                 </div>
 
                             </div>
+
+
+
                         </div>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" [disabled]="createPost.invalid" class="btn btn-success waves-effect waves-button waves-float" id="addEvent">Save as draft</button>
-                        <button type="button" [disabled]="createPost.invalid" (click)="submitForm()" class="btn btn-primary waves-effect waves-button waves-float" id="addEvent">Save as ready for review</button>
+                        <button type="button" [disabled]="createPost.invalid" *ngIf="isEditMode" (click)="updatePost()" class="btn btn-success waves-effect waves-button waves-float" id="addEvent">Update Post</button>
+                        <button type="button" [disabled]="createPost.invalid" *ngIf="!isEditMode" class="btn btn-success waves-effect waves-button waves-float" id="addEvent">Save as draft</button>
+                        <button type="button" [disabled]="createPost.invalid" (click)="submitForm()" class="btn btn-primary waves-effect waves-button waves-float" id="addEvent" *ngIf="!isEditMode">Save as ready for review</button>
+                        <button type="button" [disabled]="createPost.invalid" (click)="deletePost(currentPost)" class="btn btn-danger waves-effect waves-button waves-float" id="addEvent2" *ngIf="isEditMode">Delete Post</button>
                         <button type="button" class="btn btn-danger waves-effect waves-button waves-float" data-dismiss="modal">Close</button>
                     </div>
                 </div>

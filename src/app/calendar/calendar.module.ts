@@ -1,3 +1,4 @@
+import { CalendarService } from './calendar.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalendarComponent } from './calendar.component';
 import { NgModule } from '@angular/core';
@@ -17,6 +18,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot()
   ],
-  declarations: [CalendarComponent]
+  declarations: [CalendarComponent],
+  providers:[CalendarService]
 })
 export class CalendarModule { }

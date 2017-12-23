@@ -1,6 +1,9 @@
+import { EventsService } from './../events.service';
+import { CalendarService } from './calendar.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder,Validators } from '@angular/forms';
 declare var $:any;
+declare var swal:any;
 
 @Component({
   selector: 'app-calendar',
@@ -10,7 +13,9 @@ declare var $:any;
 export class CalendarComponent implements OnInit  {
     createPost:FormGroup;
     postDescription='';
-     constructor(private fb:FormBuilder) { }
+    currentPost;
+    isEditMode=false;
+     constructor(private fb:FormBuilder,private eventsService:EventsService,private calendarService:CalendarService) { }
      
     initDatetimePicker()
     {
@@ -61,17 +66,80 @@ export class CalendarComponent implements OnInit  {
 
      }
 
+     addPost(post)
+     {
+
+        post.start=post.date;
+        post.title=post.name;
+        post.fullDay=true;
+        post._id=Date.now();
+        post.saved=true;
+
+        swal('Event Added','Event has been added to your calendar','success').then(()=>{
+            this.calendarService.addPost(post);
+            $("#calendar").fullCalendar( 'renderEvent', post ,true);            
+            $('.modal').modal('hide');
+            
+        })
+        
+     }
+
+     updatePost()
+     {
+            this.calendarService.updatePost(this.currentPost);
+            $("#calendar").fullCalendar( 'renderEvent', this.currentPost ,true);            
+     }
+
+     deletePost(post)
+     {
+         this.calendarService.deletePost(post);
+         swal({
+            title: 'Are you sure?',
+            text: "You want to delete this post",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.value) {
+              swal(
+                'Deleted!',
+                'The post has been removed from the calendar',
+                'success'
+              ).then(()=>{
+                $("#calendar").fullCalendar( 'removeEvents' [ post._id] );
+                $('.modal').modal('hide');
+                
+              })
+            }
+          })
+
+         
+     }
+
      submitForm()
      {
+         var post=this.createPost.value;
         // this.createPost.value.description=this.postDescription;
          console.log(this.createPost.value);
         var str= $('.html-editor').froalaEditor('html.get', true);
-        console.log(str)
+        console.log(str);
+
+        this.addPost(post);
+
          
+     }
+
+     initJqueryData()
+     {
+        $(".tagsinput").tagsinput();
+        
      }
 
 
     ngOnInit() {
+        this.initJqueryData();
         this.initCalendar();
         this.initDatetimePicker()
         this.initForm();
@@ -84,6 +152,7 @@ export class CalendarComponent implements OnInit  {
      
      initCalendar()
      {
+         console.log('initing calendar')
         // $(document).ready(function() {
             
           var date = new Date();
@@ -107,89 +176,41 @@ export class CalendarComponent implements OnInit  {
               editable: true,
     
               //Add Events
-              events: [
-                  {
-                      title: 'Hangout with friends',
-                      start: new Date(y, m, 1),
-                      end: new Date(y, m, 2),
-                      className: 'bgm-cyan'
-                  },
-                  {
-                      title: 'Meeting with client',
-                      start: new Date(y, m, 10),
-                      allDay: true,
-                      className: 'bgm-red'
-                  },
-                  {
-                      title: 'Repeat Event',
-                      start: new Date(y, m, 18),
-                      allDay: true,
-                      className: 'bgm-blue'
-                  },
-                  {
-                      title: 'Semester Exam',
-                      start: new Date(y, m, 20),
-                      end: new Date(y, m, 23),
-                      className: 'bgm-green'
-                  },
-                  {
-                      title: 'Soccor match',
-                      start: new Date(y, m, 5),
-                      end: new Date(y, m, 6),
-                      className: 'bgm-purple'
-                  },
-                  {
-                      title: 'Coffee time',
-                      start: new Date(y, m, 21),
-                      className: 'bgm-orange'
-                  },
-                  {
-                      title: 'Job Interview',
-                      start: new Date(y, m, 5),
-                      className: 'bgm-dark'
-                  },
-                  {
-                      title: 'IT Meeting',
-                      start: new Date(y, m, 5),
-                      className: 'bgm-cyan'
-                  },
-                  {
-                      title: 'Brunch at Beach',
-                      start: new Date(y, m, 1),
-                      className: 'bgm-purple'
-                  },
-                  {
-                      title: 'Live TV Show',
-                      start: new Date(y, m, 15),
-                      end: new Date(y, m, 17),
-                      className: 'bgm-orange'
-                  },
-                  {
-                      title: 'Software Conference',
-                      start: new Date(y, m, 25),
-                      end: new Date(y, m, 28),
-                      className: 'bgm-blue'
-                  },
-                  {
-                      title: 'Coffee time',
-                      start: new Date(y, m, 30),
-                      className: 'bgm-orange'
-                  },
-                  {
-                      title: 'Job Interview',
-                      start: new Date(y, m, 30),
-                      className: 'bgm-dark'
-                  },
-              ],
+              events: this.calendarService.getPosts(),
+              eventClick: (calEvent, jsEvent, view)=> {
+                this.isEditMode=true;
+                this.currentPost=calEvent;
+                console.log(calEvent)
+                console.log(jsEvent)
+
+                this.createPost.patchValue(this.calendarService.getPost(calEvent))
+
+                $('.modal').modal('toggle');
+                  // change the border color just for fun
+                        $(this).css('border-color', 'red');
+                
+                    },
                
               //On Day Select
-              select: function(start, end, allDay) {
+              select: (start, end, allDay) =>{
                   $('#addNew-event').modal('show');   
                   $('#addNew-event input:text').val('');
                   $('#getStart').val(start);
                   $('#getEnd').val(end);
-              }
-          });
+              },
+              dayClick: (date, jsEvent, view)=> {
+                  this.isEditMode=false;
+                this.createPost.patchValue({
+                    date:date.toDate(),
+                    time:date.toDate()
+                })
+
+        // change the day's background color just for fun
+        $(this).css('background-color', 'red');
+
+                }
+              });
+
     
           //Create and ddd Action button with dropdown in Calendar header. 
           var actionMenu = '<ul class="actions actions-alt" id="fc-actions">' +
@@ -227,29 +248,29 @@ export class CalendarComponent implements OnInit  {
           })();
       
           //Add new Event
-          $('body').on('click', '#addEvent', function(){
-              var eventName = $('#eventName').val();
-              var tagColor = $('.event-tag > span.selected').attr('data-tag');
+        //   $('body').on('click', '#addEvent', function(){
+        //       var eventName = $('#eventName').val();
+        //       var tagColor = $('.event-tag > span.selected').attr('data-tag');
                   
-              if (eventName != '') {
-                  //Render Event
-                  $('#calendar').fullCalendar('renderEvent',{
-                      title: eventName,
-                      start: $('#getStart').val(),
-                      end:  $('#getEnd').val(),
-                      allDay: true,
-                      className: tagColor
+        //       if (eventName != '') {
+        //           //Render Event
+        //           $('#calendar').fullCalendar('renderEvent',{
+        //               title: eventName,
+        //               start: $('#getStart').val(),
+        //               end:  $('#getEnd').val(),
+        //               allDay: true,
+        //               className: tagColor
                       
-                  },true ); //Stick the event
+        //           },true ); //Stick the event
                   
-                  $('#addNew-event form')[0].reset()
-                  $('#addNew-event').modal('hide');
-              }
+        //           $('#addNew-event form')[0].reset()
+        //           $('#addNew-event').modal('hide');
+        //       }
               
-              else {
-                  $('#eventName').closest('.form-group').addClass('has-error');
-              }
-          });   
+        //       else {
+        //           $('#eventName').closest('.form-group').addClass('has-error');
+        //       }
+        //   });   
     
           //Calendar views
           $('body').on('click', '#fc-actions [data-view]', function(e){
