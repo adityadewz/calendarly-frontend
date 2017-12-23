@@ -79,6 +79,8 @@ export class CalendarComponent implements OnInit  {
             this.calendarService.addPost(post);
             $("#calendar").fullCalendar( 'renderEvent', post ,true);            
             $('.modal').modal('hide');
+            // this.createPost.reset();
+            // this.createPost.markAsUntouched();
             
         })
         
@@ -86,8 +88,22 @@ export class CalendarComponent implements OnInit  {
 
      updatePost()
      {
-            this.calendarService.updatePost(this.currentPost);
-            $("#calendar").fullCalendar( 'renderEvent', this.currentPost ,true);            
+        swal({
+            title: 'Are you sure?',
+            text: "You want to update this post",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, update it!'
+          }).then((res)=>{
+              if(res.value)
+              {
+                this.calendarService.updatePost(this.currentPost);
+                $("#calendar").fullCalendar( 'updateEvent', this.currentPost);   
+              }
+          })
+               
      }
 
      deletePost(post)
@@ -108,7 +124,8 @@ export class CalendarComponent implements OnInit  {
                 'The post has been removed from the calendar',
                 'success'
               ).then(()=>{
-                $("#calendar").fullCalendar( 'removeEvents' [ post._id] );
+                  console.log(post)
+                $("#calendar").fullCalendar( 'removeEvents', post._id );
                 $('.modal').modal('hide');
                 
               })

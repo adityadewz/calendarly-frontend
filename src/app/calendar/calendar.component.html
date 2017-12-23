@@ -1,6 +1,5 @@
 <div class="container">
-    <div class="block-header">
-        <!-- <h2>Calendar <small>FullCalendar is a jQuery plugin that provides a full-sized, drag & drop event calendar like the one below. It uses AJAX to fetch events on-the-fly and is easily configured to use your own feed format. It is visually customizable with a rich API.</small></h2> -->
+    <!-- <div class="block-header">
 
         <ul class="actions">
             <li>
@@ -32,7 +31,7 @@
             </li>
         </ul>
 
-    </div>
+    </div> -->
 
     <div id="calendar"></div>
 
@@ -156,7 +155,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" [disabled]="createPost.invalid" *ngIf="isEditMode" (click)="updatePost()" class="btn btn-success waves-effect waves-button waves-float" id="addEvent">Update Post</button>
+                        <button type="button" [disabled]="createPost.invalid" *ngIf="isEditMode&&createPost.dirty" (click)="updatePost()" class="btn btn-success waves-effect waves-button waves-float" id="addEvent">Update Post</button>
                         <button type="button" [disabled]="createPost.invalid" *ngIf="!isEditMode" class="btn btn-success waves-effect waves-button waves-float" id="addEvent">Save as draft</button>
                         <button type="button" [disabled]="createPost.invalid" (click)="submitForm()" class="btn btn-primary waves-effect waves-button waves-float" id="addEvent" *ngIf="!isEditMode">Save as ready for review</button>
                         <button type="button" [disabled]="createPost.invalid" (click)="deletePost(currentPost)" class="btn btn-danger waves-effect waves-button waves-float" id="addEvent2" *ngIf="isEditMode">Delete Post</button>

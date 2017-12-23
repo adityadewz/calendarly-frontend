@@ -115,14 +115,13 @@ export class CalendarService {
     var postIndex;
     this.posts.forEach((obj,index)=>{
 
-      if(obj._id===post._id)
-      {
-        postIndex=index;
-      }
+     postIndex=index;
 
     })
-
+      console.log(postIndex)
     this.posts[postIndex]=post;
+
+    console.log(this.posts)
   }
 
 }
