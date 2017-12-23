@@ -2,3 +2,9 @@
 
 
 /* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
+
+body.modal-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}

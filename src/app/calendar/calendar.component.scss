@@ -5,3 +5,9 @@ textarea.note-codable {
 a[target=_blank] {
     display: none !important;
 }
+
+.modal-dialog {
+    /* z-index: 999; */
+    max-height: 800px;
+    overflow-y: scroll;
+}

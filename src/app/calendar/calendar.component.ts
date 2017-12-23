@@ -152,6 +152,8 @@ export class CalendarComponent implements OnInit  {
      {
         $(".tagsinput").tagsinput();
         
+        $('.modal-lg').css({'z-index':'999'})
+
      }
 
 
