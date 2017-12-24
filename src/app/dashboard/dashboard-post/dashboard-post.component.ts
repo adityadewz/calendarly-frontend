@@ -1,31 +1,16 @@
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-declare var $:any;
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-dashboard-post',
+  templateUrl: './dashboard-post.component.html',
+  styleUrls: ['./dashboard-post.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardPostComponent implements OnInit {
 
   constructor(private fb:FormBuilder) { }
 
-  ngOnInit() {
-    this.initForm();
-    this.initJqueryData();
-  }
   createPost:FormGroup;
-
-  initJqueryData()
-  {
-    $('.lightbox').lightGallery({
-      enableTouch: true
-  });
-  $(".tagsinput").tagsinput();
-  
-  }
-
   private initForm()
   {
 
@@ -41,5 +26,12 @@ export class DashboardComponent implements OnInit {
      })
 
   }
+
+
+  ngOnInit() {
+    console.log('dashboard post')
+    this.initForm();
+  }
+
 
 }

@@ -41,6 +41,7 @@
             "assets/vendors/easypiechart/jquery.easypiechart.min.js",
             "assets/vendors/fullcalendar/lib/moment.min.js",
             "assets/vendors/auto-size/jquery.autosize.min.js",
+            "assets/vendors/light-gallery/lightGallery.min.js",
             "assets/vendors/fullcalendar/fullcalendar.min.js",
             "assets/vendors/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js",
             "assets/vendors/input-mask/input-mask.min.js",

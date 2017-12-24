@@ -1,43 +1,10 @@
 <div class="container">
-    <!-- <div class="block-header">
-
-        <ul class="actions">
-            <li>
-                <a href="">
-                    <i class="md md-trending-up"></i>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <i class="md md-done-all"></i>
-                </a>
-            </li>
-            <li class="dropdown">
-                <a href="" data-toggle="dropdown">
-                    <i class="md md-more-vert"></i>
-                </a>
-
-                <ul class="dropdown-menu dropdown-menu-right">
-                    <li>
-                        <a href="">Refresh</a>
-                    </li>
-                    <li>
-                        <a href="">Manage Widgets</a>
-                    </li>
-                    <li>
-                        <a href="">Widgets Settings</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-
-    </div> -->
 
     <div id="calendar"></div>
 
-    <!-- Add event -->
     <div class="modal fade" tabindex="-1" role="dialog" id="addNew-event" data-keyboard="true">
         <div class="modal-dialog modal-lg">
+            <!-- <app-create-post></app-create-post> -->
             <form class="addEvent" role="form" [formGroup]="createPost" novalidate>
                 <div class="modal-content">
                     <div class="modal-header">
@@ -58,7 +25,6 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <!-- <p class="c-black f-500 m-b-20">Date Picker</p> -->
 
                                 <div class="input-group form-group" [ngClass]="{'has-success':createPost.get('date').touched&&createPost.get('date').valid,'has-error':createPost.get('date').touched&&createPost.get('date').invalid}">
                                     <span class="input-group-addon"><i class="md md-event"></i></span>
@@ -69,7 +35,6 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <!-- <p class="c-black f-500 m-b-20">Time Picker</p> -->
 
                                 <div class="input-group form-group" [ngClass]="{'has-success':createPost.get('time').touched&&createPost.get('time').valid,'has-error':createPost.get('time').touched&&createPost.get('time').invalid}">
                                     <span class="input-group-addon"><i class="md md-access-time"></i></span>
@@ -102,7 +67,6 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <!-- [ngClass]="{'has-success':createPost.get('date').valid,'has-error':createPost.get('date').invalid}" -->
                                     <label for="eventName">Social Profile</label>
                                     <div class="fg-line">
                                         <input type="text" value="Facebook-Global" data-role="tagsinput" class="tagsinput">
@@ -116,8 +80,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h2>Description
-                                    <!-- <small>
-                                Super Simple WYSIWYG Editor on Bootstrap</small> -->
                                 </h2>
                             </div>
 

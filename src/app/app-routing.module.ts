@@ -1,3 +1,4 @@
+import { DashboardPostComponent } from './dashboard/dashboard-post/dashboard-post.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
@@ -22,7 +23,17 @@ export const appRoutes: Routes = [
   },
   {
     path:'dashboard',
-    component:DashboardComponent
+    component:DashboardComponent,
+    children:[
+     {
+       path:'',
+       pathMatch:'full',
+       redirectTo:'post'
+     }, {
+      path:'post',
+      component:DashboardPostComponent
+    }
+    ]
   },
   {
     path:'calendar',

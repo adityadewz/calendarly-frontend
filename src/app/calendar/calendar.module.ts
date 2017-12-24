@@ -1,11 +1,10 @@
+import { CreatePostComponent } from './../create-post/create-post.component';
+import { RouterModule } from '@angular/router';
 import { CalendarService } from './calendar.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalendarComponent } from './calendar.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-// import { TimepickerModule } from 'ngx-bootstrap/timepicker';
-import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 import { CalendarRoutingModule } from './calendar-routing.module';
@@ -19,7 +18,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     ReactiveFormsModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
-    ModalModule.forRoot()
+    RouterModule
   ],
   declarations: [CalendarComponent],
   providers:[CalendarService]

@@ -1,0 +1,89 @@
+<form [formGroup]="createPost">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group" [ngClass]="{'has-success':createPost.get('name').touched&&createPost.get('name').valid,'has-error':createPost.get('name').touched&&createPost.get('name').invalid}">
+                <label for="eventName">Title</label>
+                <div class="fg-line">
+                    <input formControlName="name" type="text" class="input-sm form-control" id="eventName" placeholder="eg: Sports day">
+                </div>
+                <small class="help-block"></small>
+            </div>
+        </div>
+        <div class="col-md-6">
+
+            <div class="input-group form-group" [ngClass]="{'has-success':createPost.get('date').touched&&createPost.get('date').valid,'has-error':createPost.get('date').touched&&createPost.get('date').invalid}">
+                <span class="input-group-addon"><i class="md md-event"></i></span>
+                <div class="dtp-container dropdown fg-line">
+                    <label for="eventName">Date Picker</label>
+                    <input formControlName="date" [value]="createPost.value.date | date:'dd/mm/yyyy'" type='text' class="form-control date-picker" data-toggle="dropdown" placeholder="Click here...">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+
+            <div class="input-group form-group" [ngClass]="{'has-success':createPost.get('time').touched&&createPost.get('time').valid,'has-error':createPost.get('time').touched&&createPost.get('time').invalid}">
+                <span class="input-group-addon"><i class="md md-access-time"></i></span>
+                <div class="dtp-container dropdown fg-line">
+                    <label for="eventName">Time Picker</label>
+                    <input formControlName="time" [value]="createPost.value.time | date:'shortTime'" type='text' class="form-control time-picker" data-toggle="dropdown" placeholder="Click here...">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group" [ngClass]="{'has-success':createPost.get('topic.name').touched&&createPost.get('topic.name').valid,'has-error':createPost.get('topic.name').touched&&createPost.get('topic.name').invalid}">
+                <label for="eventName">Topic</label>
+                <div class="fg-line" formGroupName="topic">
+                    <input type="text" formControlName="name" value="Topic1,Topic2" data-role="tagsinput" class="tagsinput">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group" [ngClass]="{'has-success':createPost.get('tags').touched&&createPost.get('tags').valid,'has-error':createPost.get('tags').touched&&createPost.get('tags').invalid}">
+                <label for="eventName">Tags</label>
+                <div class="fg-line">
+                    <input type="text" formControlName="tags" value="Tag-A,Tag-B" data-role="tagsinput" class="tagsinput">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+
+                <label for="eventName">Social Profile</label>
+                <div class="fg-line">
+                    <input type="text" value="Facebook-Global" data-role="tagsinput" class="tagsinput">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="fileinput fileinput-new" data-provides="fileinput">
+                <span class="btn btn-primary btn-file m-r-10">
+                                                                <span class="fileinput-new">Select file</span>
+                <span class="fileinput-exists">Change</span>
+                <input type="file" name="...">
+                </span>
+                <span class="fileinput-filename"></span>
+                <a href="#" class="close fileinput-exists" data-dismiss="fileinput">&times;</a>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="fileinput fileinput-new" data-provides="fileinput">
+                <span class="btn btn-info btn-file m-r-10">
+                                                                    <span class="fileinput-new">Select Image</span>
+                <span class="fileinput-exists">Change</span>
+                <input type="file" name="...">
+                </span>
+                <span class="fileinput-filename"></span>
+                <a href="#" class="close fileinput-exists" data-dismiss="fileinput">&times;</a>
+            </div>
+        </div>
+    </div>
+</form>
