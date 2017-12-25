@@ -1,3 +1,4 @@
+import { ProfileModule } from './profile/profile.module';
 import { CoreModule } from './core/core.module';
 import { EventsService } from './events.service';
 import { DashboardModule } from './dashboard/dashboard.module';
@@ -16,7 +17,8 @@ import { CreatePostComponent } from './create-post/create-post.component';
     BrowserModule,
     CalendarModule,
     DashboardModule,
-    CoreModule
+    CoreModule,
+    ProfileModule
   ],
   providers: [EventsService],
   bootstrap: [AppComponent]

@@ -4,16 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
-
-// const appRoutes: Routes = [
-//   { path: 'dashboard', component: DashboardComponent },
-//   { path: 'calendar', component:CalendarComponent},
-//   {
-//       path:'**',
-//       redirectTo: 'dashboard'
-//   }
-// //   { path: 'shopping-list', component: ShoppingListComponent }
-// ];
+import {ProfileComponent} from './profile/profile.component';
 
 export const appRoutes: Routes = [
   {
@@ -23,21 +14,27 @@ export const appRoutes: Routes = [
   },
   {
     path:'dashboard',
+    // loadChildren:"./dashboard/dashboard.module#DashboardModule"
     component:DashboardComponent,
     children:[
-     {
-       path:'',
-       pathMatch:'full',
-       redirectTo:'post'
-     }, {
-      path:'post',
-      component:DashboardPostComponent
-    }
-    ]
+      {
+        path:'',
+        pathMatch:'full',
+        redirectTo:'post'
+      }, {
+       path:'post',
+       component:DashboardPostComponent
+     }
+     ]
   },
   {
     path:'calendar',
     component:CalendarComponent
+    // loadChildren:"./calendar/calendar.module#CalendarModule"
+  },
+  {
+path:'profile',
+component:ProfileComponent
   },
   {
     path:'**',

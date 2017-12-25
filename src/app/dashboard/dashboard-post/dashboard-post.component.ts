@@ -1,3 +1,4 @@
+import { CalendarService } from './../../calendar/calendar.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,8 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardPostComponent implements OnInit {
 
-  constructor(private fb:FormBuilder) { }
-
+  constructor(private fb:FormBuilder,private calendarService:CalendarService) { }
+  posts=[];
   createPost:FormGroup;
   private initForm()
   {
@@ -27,8 +28,14 @@ export class DashboardPostComponent implements OnInit {
 
   }
 
+  getPosts()
+  {
+    this.posts=this.calendarService.getPosts();
+  }
+
 
   ngOnInit() {
+    this.getPosts();
     console.log('dashboard post')
     this.initForm();
   }

@@ -16,7 +16,41 @@ export class CreatePostComponent implements OnInit {
   {
     $(".tagsinput").tagsinput();
     
+  }    
+  initDatetimePicker()
+  {
+      var dp=$('.date-picker').datetimepicker({
+          format: 'DD/MM/YYYY'
+      }).on('dp.change',(e)=>
+      {
+          console.log(e)
+          this.createPost.patchValue({
+              date:e.date.toDate()
+          })
+      });
+
+      var tp=$('.time-picker').datetimepicker({
+          format: 'LT'
+      });
+
+      $('.date-picker').on('dp.change',(e)=>
+      {
+          console.log(e)
+          this.createPost.patchValue({
+              date:e.date.toDate()
+          })
+      })
+
+      $('.time-picker').on('dp.change',(e)=>
+      {
+          console.log(e)
+          this.createPost.patchValue({
+              time:e.date.toDate()
+          })        })
+
   }
+
+
   private initForm()
   {
 
@@ -35,6 +69,7 @@ export class CreatePostComponent implements OnInit {
   ngOnInit() {
     this.initForm();
     this.initJqueryData();
+    this.initDatetimePicker();
   }
 
 }

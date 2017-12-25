@@ -6,15 +6,16 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path:'',
-    children:[{
-      path:'',
-      component:DashboardComponent,
-      children:[
-        {
-          path:'post',
-          component:DashboardPostComponent
-        }]
-    }]
+   children:[
+     {
+       path:'',
+       pathMatch:'full',
+       redirectTo:'post'
+     }, {
+      path:'post',
+      component:DashboardPostComponent
+    }
+    ]
   }
 ];
 @NgModule({

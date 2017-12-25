@@ -95,14 +95,17 @@
 
 </div>
 <div class="timeline">
-    <div class="t-view" data-tv-type="text">
+    <div class="t-view" data-tv-type="text" *ngFor="let post of posts">
         <div class="tv-header media">
             <a href="" class="tvh-user pull-left">
                 <img class="img-responsive" src="./assets/img/profile-pics/profile-pic-2.jpg" alt="">
             </a>
             <div class="media-body p-t-5">
                 <strong class="d-block">Malinda Hollaway</strong>
-                <small class="c-gray">April 23, 2014 at 05:00</small>
+                <small class="c-gray">
+                    {{post.date | date:'medium'}}
+                    <!-- April 23, 2014 at 05:00 -->
+                </small>
             </div>
 
             <ul class="actions m-t-20 hidden-xs">
@@ -123,12 +126,13 @@
             </ul>
         </div>
         <div class="tv-body">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sem dolor, posuere convallis blandit sit amet, aliquet in est. Ut condimentum magna enim, non venenatis elit interdum accumsan. In hac habitasse platea dictumst. Etiam molestie
+            <div [froalaView]="post.description"></div>
+            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sem dolor, posuere convallis blandit sit amet, aliquet in est. Ut condimentum magna enim, non venenatis elit interdum accumsan. In hac habitasse platea dictumst. Etiam molestie
                 felis non mollis viverra. In ipsum lorem, fermentum vitae lectus in, accumsan malesuada neque.</p>
 
             <p>Suspendisse vehicula urna nisi, in luctus lacus consequat at. Nam purus dolor, tristique id lacinia sed, tincidunt congue metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec gravida leo. Sed nec ligula porta, dignissim
                 elit molestie, finibus ligula. Nunc venenatis malesuada est ac molestie. Phasellus ornare nibh eu nisl rhoncus, vitae porttitor ante feugiat. Nulla vehicula erat nec odio dignissim, sit amet porttitor lorem auctor. Maecenas fermentum tellus
-                ex, ac aliquet nisl malesuada id.</p>
+                ex, ac aliquet nisl malesuada id.</p> -->
 
             <div class="clearfix"></div>
 
@@ -192,7 +196,7 @@
         </div>
     </div>
 
-    <div class="t-view" data-tv-type="image">
+    <!-- <div class="t-view" data-tv-type="image">
         <div class="tv-header media">
             <a href="" class="tvh-user pull-left">
                 <img class="img-responsive" src="./assets/img/profile-pics/profile-pic-2.jpg" alt="">
@@ -470,11 +474,11 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </div> -->
 
     <div class="clearfix"></div>
 
-    <div class="load-more">
+    <div class="load-more" *ngIf="posts.length">
         <a href=""><i class="md md-refresh"></i> Load More...</a>
     </div>
 </div>
