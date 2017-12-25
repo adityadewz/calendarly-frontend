@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { EventsService } from './../events.service';
 import { CalendarService } from './calendar.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,7 +16,7 @@ export class CalendarComponent implements OnInit  {
     postDescription='';
     currentPost;
     isEditMode=false;
-     constructor(private fb:FormBuilder,private eventsService:EventsService,private calendarService:CalendarService) { }
+     constructor(private fb:FormBuilder,private router:Router,private eventsService:EventsService,private calendarService:CalendarService) { }
      
     initDatetimePicker()
     {
@@ -140,7 +141,11 @@ export class CalendarComponent implements OnInit  {
          var post=this.createPost.value;
         // this.createPost.value.description=this.postDescription;
          console.log(this.createPost.value);
-        var str= $('.html-editor').froalaEditor('html.get', true);
+        // var str= $('.html-editor').froalaEditor('html.get', true);
+        var str=$('.html-editor').summernote('code');
+        this.createPost.patchValue({
+            description:$('.html-editor').innerHtml
+        })
         console.log(str);
 
         this.addPost(post);
@@ -153,6 +158,16 @@ export class CalendarComponent implements OnInit  {
         $(".tagsinput").tagsinput();
         
         $('.modal-lg').css({'z-index':'999'})
+
+        $(".html-editor").summernote({
+            height:150,
+            onChange: (contents, $editable)=> {
+                this.createPost.patchValue({
+                    description:contents
+                })
+                console.log('onChange:', contents, $editable);
+              }
+        });
 
      }
 
@@ -197,16 +212,17 @@ export class CalendarComponent implements OnInit  {
               //Add Events
               events: this.calendarService.getPosts(),
               eventClick: (calEvent, jsEvent, view)=> {
-                this.isEditMode=true;
-                this.currentPost=calEvent;
-                console.log(calEvent)
-                console.log(jsEvent)
+                  this.router.navigate(['/','post',calEvent._id])
+                // this.isEditMode=true;
+                // this.currentPost=calEvent;
+                // console.log(calEvent)
+                // console.log(jsEvent)
 
-                this.createPost.patchValue(this.calendarService.getPost(calEvent))
+                // this.createPost.patchValue(this.calendarService.getPost(calEvent))
 
-                $('.modal').modal('toggle');
-                  // change the border color just for fun
-                        $(this).css('border-color', 'red');
+                // $('.modal').modal('toggle');
+                //   // change the border color just for fun
+                //         $(this).css('border-color', 'red');
                 
                     },
                

@@ -1,3 +1,4 @@
+import { PostViewComponent } from './post-view/post-view.component';
 import { DashboardPostComponent } from './dashboard/dashboard-post/dashboard-post.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -26,6 +27,10 @@ export const appRoutes: Routes = [
        component:DashboardPostComponent
      }
      ]
+  },
+  {
+    path:'post/:id',
+    component:PostViewComponent
   },
   {
     path:'calendar',

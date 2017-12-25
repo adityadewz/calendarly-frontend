@@ -1,5 +1,5 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 declare var $:any;
 
 @Component({
@@ -12,11 +12,15 @@ export class CreatePostComponent implements OnInit {
   constructor(private fb:FormBuilder) { }
   createPost:FormGroup;
   // @Output('submitForm')
+  @Input() postData;
   initJqueryData()
   {
     $(".tagsinput").tagsinput();
-    
+    $('.html-editor').summernote({
+        height: 150
+    });
   }    
+  
   initDatetimePicker()
   {
       var dp=$('.date-picker').datetimepicker({
@@ -53,7 +57,6 @@ export class CreatePostComponent implements OnInit {
 
   private initForm()
   {
-
      this.createPost=this.fb.group({
          name:this.fb.control(null,[Validators.required]),
          description:this.fb.control(null,[Validators.required]),
@@ -64,10 +67,14 @@ export class CreatePostComponent implements OnInit {
          }),
          tags:this.fb.control("Tag A,Tag B",[Validators.required])
      })
-
   }
   ngOnInit() {
     this.initForm();
+    if(this.postData)
+      {
+          this.createPost.patchValue(this.postData);
+          console.log('data found')
+      }
     this.initJqueryData();
     this.initDatetimePicker();
   }

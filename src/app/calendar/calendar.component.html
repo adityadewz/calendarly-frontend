@@ -4,7 +4,7 @@
 
     <div class="modal fade" tabindex="-1" role="dialog" id="addNew-event" data-keyboard="true">
         <div class="modal-dialog modal-lg">
-            <!-- <app-create-post></app-create-post> -->
+            <!-- <app-create-post></app-create-post>? -->
             <form class="addEvent" role="form" [formGroup]="createPost" novalidate>
                 <div class="modal-content">
                     <div class="modal-header">
@@ -79,17 +79,16 @@
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <h2>Description
-                                </h2>
+                                <h2>Description</h2>
                             </div>
 
                             <div class="card-body">
 
-                                <textarea [froalaEditor] formControlName="description"></textarea>
+                                <div class="html-editor"></div>
+                                <!-- <text-area class="html-editor"></text-area> -->
+
 
                             </div>
-
-
                         </div>
 
                         <div class="card">
@@ -118,8 +117,8 @@
 
                     <div class="modal-footer">
                         <button type="button" [disabled]="createPost.invalid" *ngIf="isEditMode&&createPost.dirty" (click)="updatePost()" class="btn btn-success waves-effect waves-button waves-float" id="addEvent">Update Post</button>
-                        <button type="button" [disabled]="createPost.invalid" *ngIf="!isEditMode" class="btn btn-success waves-effect waves-button waves-float" id="addEvent">Save as draft</button>
-                        <button type="button" [disabled]="createPost.invalid" (click)="submitForm()" class="btn btn-primary waves-effect waves-button waves-float" id="addEvent" *ngIf="!isEditMode">Save as ready for review</button>
+                        <!-- <button type="button" [disabled]="createPost.invalid" (click)="submitForm()" class="btn btn-primary waves-effect waves-button waves-float" id="addEvent" *ngIf="!isEditMode">Save</button> -->
+                        <button type="button" (click)="submitForm()" class="btn btn-primary waves-effect waves-button waves-float" id="addEvent" *ngIf="!isEditMode">Save</button>
                         <button type="button" [disabled]="createPost.invalid" (click)="deletePost(currentPost)" class="btn btn-danger waves-effect waves-button waves-float" id="addEvent2" *ngIf="isEditMode">Delete Post</button>
                         <button type="button" class="btn btn-danger waves-effect waves-button waves-float" data-dismiss="modal">Close</button>
                     </div>

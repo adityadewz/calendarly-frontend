@@ -19,6 +19,6 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     FroalaViewModule.forRoot(),
     RouterModule
   ],
-  declarations: [DashboardComponent,DashboardPostComponent,CreatePostComponent]
+  declarations: [DashboardComponent,DashboardPostComponent]
 })
 export class DashboardModule { }

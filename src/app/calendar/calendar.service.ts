@@ -105,9 +105,9 @@ export class CalendarService {
     this.posts.push(event)
   }
 
-  getPost(event)
+  getPost(postId)
   {
-    return this.posts.filter(e=>e._id===event._id)[0]
+    return this.posts.filter(e=>e._id===postId)[0]
   }
 
   updatePost(post)

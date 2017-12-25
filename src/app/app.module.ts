@@ -1,3 +1,4 @@
+import { FroalaEditorModule } from 'angular-froala-wysiwyg';
 import { ProfileModule } from './profile/profile.module';
 import { CoreModule } from './core/core.module';
 import { EventsService } from './events.service';
@@ -8,17 +9,21 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { CreatePostComponent } from './create-post/create-post.component';
+import { PostViewComponent } from './post-view/post-view.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PostViewComponent,
+    CreatePostComponent
   ],
   imports: [
     BrowserModule,
     CalendarModule,
     DashboardModule,
     CoreModule,
-    ProfileModule
+    ProfileModule,
+    FroalaEditorModule
   ],
   providers: [EventsService],
   bootstrap: [AppComponent]
