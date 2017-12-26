@@ -14,9 +14,12 @@ export class PostViewComponent implements OnInit {
   post;
   isWatch;
   ngOnInit() {
-    // $('.selectpicker').selectpicker();    
+    // $('.selectpicker').selectpicker();  
     // this.initJqueryData();
     this.route.params.subscribe(param=>{
+      $('.html-editor').summernote({
+        height:150
+      })  
       console.log(param)
      this.post= this.calendarService.getPost(Number(param.id));
      console.log(this.post)
@@ -42,7 +45,7 @@ export class PostViewComponent implements OnInit {
 
   ngAfterViewInit()
   {
-this.initJqueryData();
+    this.initJqueryData();
   }
 
 }

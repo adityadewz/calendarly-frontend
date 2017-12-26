@@ -10,23 +10,8 @@ import {ProfileComponent} from './profile/profile.component';
 export const appRoutes: Routes = [
   {
     path:'',
-    redirectTo:'dashboard',
+    redirectTo:'calendar',
     pathMatch:'full'
-  },
-  {
-    path:'dashboard',
-    // loadChildren:"./dashboard/dashboard.module#DashboardModule"
-    component:DashboardComponent,
-    children:[
-      {
-        path:'',
-        pathMatch:'full',
-        redirectTo:'post'
-      }, {
-       path:'post',
-       component:DashboardPostComponent
-     }
-     ]
   },
   {
     path:'post/:id',
@@ -35,15 +20,14 @@ export const appRoutes: Routes = [
   {
     path:'calendar',
     component:CalendarComponent
-    // loadChildren:"./calendar/calendar.module#CalendarModule"
   },
-  {
-path:'profile',
-component:ProfileComponent
-  },
+    {
+  path:'profile',
+  component:ProfileComponent
+    },
   {
     path:'**',
-    redirectTo:'dashboard'
+    redirectTo:'calendar'
   }
 ];
 

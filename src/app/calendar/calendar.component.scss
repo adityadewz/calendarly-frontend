@@ -11,3 +11,24 @@ a[target=_blank] {
     max-height: 800px;
     overflow-y: scroll;
 }
+
+.modal-footer {
+    padding-bottom: 60px;
+}
+
+.waves-effect {
+    width: auto !important;
+    display: inline-block !important;
+}
+
+.download-group {
+    width: 100%;
+}
+
+#fileUpload {
+    display: none;
+}
+
+.upload-btn {
+    margin: 10px;
+}

@@ -21,3 +21,9 @@
 .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
     width: 200px;
 }
+
+@media (max-width: 767px) {
+    .timeline {
+        padding: 20px;
+    }
+}

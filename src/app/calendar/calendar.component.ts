@@ -12,10 +12,12 @@ declare var swal:any;
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit  {
-    createPost:FormGroup;
+    // createPost:FormGroup;
     postDescription='';
+    date=new Date();
     currentPost;
     isEditMode=false;
+    files=[];
      constructor(private fb:FormBuilder,private router:Router,private eventsService:EventsService,private calendarService:CalendarService) { }
      
     initDatetimePicker()
@@ -25,9 +27,9 @@ export class CalendarComponent implements OnInit  {
         }).on('dp.change',(e)=>
         {
             console.log(e)
-            this.createPost.patchValue({
-                date:e.date.toDate()
-            })
+            // this.createPost.patchValue({
+            //     date:e.date.toDate()
+            // })
         });
 
         var tp=$('.time-picker').datetimepicker({
@@ -37,35 +39,36 @@ export class CalendarComponent implements OnInit  {
         $('.date-picker').on('dp.change',(e)=>
         {
             console.log(e)
-            this.createPost.patchValue({
-                date:e.date.toDate()
-            })
+            // this.createPost.patchValue({
+            //     date:e.date.toDate()
+            // })
         })
 
         $('.time-picker').on('dp.change',(e)=>
         {
             console.log(e)
-            this.createPost.patchValue({
-                time:e.date.toDate()
-            })        })
+            // this.createPost.patchValue({
+            //     time:e.date.toDate()
+            // })   
+             })
 
     }
 
-     private initForm()
-     {
+    //  private initForm()
+    //  {
 
-        this.createPost=this.fb.group({
-            name:this.fb.control(null,[Validators.required]),
-            description:this.fb.control(null,[Validators.required]),
-            date:this.fb.control(null,[Validators.required]),
-            time:this.fb.control(null,[Validators.required]),
-            topic:this.fb.group({
-                name:this.fb.control("Topic 1,Topic 2",[Validators.required])
-            }),
-            tags:this.fb.control("Tag A,Tag B",[Validators.required])
-        })
+    //     this.createPost=this.fb.group({
+    //         name:this.fb.control(null,[Validators.required]),
+    //         description:this.fb.control(null,[Validators.required]),
+    //         date:this.fb.control(null,[Validators.required]),
+    //         time:this.fb.control(null,[Validators.required]),
+    //         topic:this.fb.group({
+    //             name:this.fb.control("Topic 1,Topic 2",[Validators.required])
+    //         }),
+    //         tags:this.fb.control("Tag A,Tag B",[Validators.required])
+    //     })
 
-     }
+    //  }
 
      addPost(post)
      {
@@ -76,7 +79,7 @@ export class CalendarComponent implements OnInit  {
         post._id=Date.now();
         post.saved=true;
 
-        swal('Event Added','Event has been added to your calendar','success').then(()=>{
+        swal('Post Added','Post has been added to your calendar','success').then(()=>{
             this.calendarService.addPost(post);
             $("#calendar").fullCalendar( 'renderEvent', post ,true);            
             $('.modal').modal('hide');
@@ -136,16 +139,16 @@ export class CalendarComponent implements OnInit  {
          
      }
 
-     submitForm()
+     submitForm(post)
      {
-         var post=this.createPost.value;
+        //  var post=this.createPost.value;
         // this.createPost.value.description=this.postDescription;
-         console.log(this.createPost.value);
+         console.log(post);
         // var str= $('.html-editor').froalaEditor('html.get', true);
         var str=$('.html-editor').summernote('code');
-        this.createPost.patchValue({
-            description:$('.html-editor').innerHtml
-        })
+        // this.createPost.patchValue({
+        //     description:$('.html-editor').innerHtml
+        // })
         console.log(str);
 
         this.addPost(post);
@@ -160,28 +163,33 @@ export class CalendarComponent implements OnInit  {
         $('.modal-lg').css({'z-index':'999'})
 
         $(".html-editor").summernote({
-            height:150,
-            onChange: (contents, $editable)=> {
-                this.createPost.patchValue({
-                    description:contents
-                })
-                console.log('onChange:', contents, $editable);
-              }
+            height:150
         });
+        this.initDatetimePicker()
+        this.initCalendar();
+        
+     }
 
+     uploadFiles()
+     {
+         $('#fileUpload').click()
+     }
+
+     selectFiles(event)
+     {
+         console.log(event)
+         this.files=event.target.files;
      }
 
 
     ngOnInit() {
         this.initJqueryData();
-        this.initCalendar();
-        this.initDatetimePicker()
-        this.initForm();
+        // this.initForm();
         console.log('Hello')
 
-        this.createPost.get('time').valueChanges.subscribe(e=>{
-            console.log(e)
-        })
+        // this.createPost.get('time').valueChanges.subscribe(e=>{
+        //     console.log(e)
+        // })
   }
      
      initCalendar()
@@ -235,10 +243,10 @@ export class CalendarComponent implements OnInit  {
               },
               dayClick: (date, jsEvent, view)=> {
                   this.isEditMode=false;
-                this.createPost.patchValue({
-                    date:date.toDate(),
-                    time:date.toDate()
-                })
+                // this.createPost.patchValue({
+                //     date:date.toDate(),
+                //     time:date.toDate()
+                // })
 
         // change the day's background color just for fun
         $(this).css('background-color', 'red');

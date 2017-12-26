@@ -4,126 +4,17 @@
 
     <div class="modal fade" tabindex="-1" role="dialog" id="addNew-event" data-keyboard="true">
         <div class="modal-dialog modal-lg">
-            <!-- <app-create-post></app-create-post>? -->
-            <form class="addEvent" role="form" [formGroup]="createPost" novalidate>
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Add a Post</h4>
-                        <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add a Post</h4>
+                    <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group" [ngClass]="{'has-success':createPost.get('name').touched&&createPost.get('name').valid,'has-error':createPost.get('name').touched&&createPost.get('name').invalid}">
-                                    <label for="eventName">Title</label>
-                                    <div class="fg-line">
-                                        <input formControlName="name" type="text" class="input-sm form-control" id="eventName" placeholder="eg: Sports day">
-                                    </div>
-                                    <small class="help-block"></small>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-
-                                <div class="input-group form-group" [ngClass]="{'has-success':createPost.get('date').touched&&createPost.get('date').valid,'has-error':createPost.get('date').touched&&createPost.get('date').invalid}">
-                                    <span class="input-group-addon"><i class="md md-event"></i></span>
-                                    <div class="dtp-container dropdown fg-line">
-                                        <label for="eventName">Date Picker</label>
-                                        <input formControlName="date" [value]="createPost.value.date | date:'shortDate'" type='text' class="form-control date-picker" data-toggle="dropdown" placeholder="Click here...">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-
-                                <div class="input-group form-group" [ngClass]="{'has-success':createPost.get('time').touched&&createPost.get('time').valid,'has-error':createPost.get('time').touched&&createPost.get('time').invalid}">
-                                    <span class="input-group-addon"><i class="md md-access-time"></i></span>
-                                    <div class="dtp-container dropdown fg-line">
-                                        <label for="eventName">Time Picker</label>
-                                        <input formControlName="time" [value]="createPost.value.time | date:'shortTime'" type='text' class="form-control time-picker" data-toggle="dropdown" placeholder="Click here...">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group" [ngClass]="{'has-success':createPost.get('topic.name').touched&&createPost.get('topic.name').valid,'has-error':createPost.get('topic.name').touched&&createPost.get('topic.name').invalid}">
-                                    <label for="eventName">Topic</label>
-                                    <div class="fg-line" formGroupName="topic">
-                                        <input type="text" formControlName="name" value="Topic1,Topic2" data-role="tagsinput" class="tagsinput">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group" [ngClass]="{'has-success':createPost.get('tags').touched&&createPost.get('tags').valid,'has-error':createPost.get('tags').touched&&createPost.get('tags').invalid}">
-                                    <label for="eventName">Tags</label>
-                                    <div class="fg-line">
-                                        <input type="text" formControlName="tags" value="Tag-A,Tag-B" data-role="tagsinput" class="tagsinput">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="eventName">Social Profile</label>
-                                    <div class="fg-line">
-                                        <input type="text" value="Facebook-Global" data-role="tagsinput" class="tagsinput">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="has-error" *ngIf="createPost.get('description').touched&&createPost.get('description').invalid">
-                            <small class="help-block">Enter a description</small>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <h2>Description</h2>
-                            </div>
-
-                            <div class="card-body">
-
-                                <div class="html-editor"></div>
-                                <!-- <text-area class="html-editor"></text-area> -->
-
-
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-header">
-                                <h2>Attach Post <small>Write your post in your favorite word processor or design software and drag it here or click below to attach files for your colleagues to provide feedback on.</small></h2>
-                            </div>
-
-                            <div class="card-body card-padding">
-
-                                <div class="fileinput fileinput-new" data-provides="fileinput">
-                                    <span class="btn btn-primary btn-file m-r-10">
-                                                <span class="fileinput-new">Select file</span>
-                                    <span class="fileinput-exists">Change</span>
-                                    <input type="file" name="...">
-                                    </span>
-                                    <span class="fileinput-filename"></span>
-                                    <a href="#" class="close fileinput-exists" data-dismiss="fileinput">&times;</a>
-                                </div>
-
-                            </div>
-
-
-
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" [disabled]="createPost.invalid" *ngIf="isEditMode&&createPost.dirty" (click)="updatePost()" class="btn btn-success waves-effect waves-button waves-float" id="addEvent">Update Post</button>
-                        <!-- <button type="button" [disabled]="createPost.invalid" (click)="submitForm()" class="btn btn-primary waves-effect waves-button waves-float" id="addEvent" *ngIf="!isEditMode">Save</button> -->
-                        <button type="button" (click)="submitForm()" class="btn btn-primary waves-effect waves-button waves-float" id="addEvent" *ngIf="!isEditMode">Save</button>
-                        <button type="button" [disabled]="createPost.invalid" (click)="deletePost(currentPost)" class="btn btn-danger waves-effect waves-button waves-float" id="addEvent2" *ngIf="isEditMode">Delete Post</button>
-                        <button type="button" class="btn btn-danger waves-effect waves-button waves-float" data-dismiss="modal">Close</button>
-                    </div>
                 </div>
-            </form>
+                <div class="modal-body">
+                    <app-create-post (formSubmitted)="submitForm($event)" [date]="date"></app-create-post>
+                </div>
+            </div>
         </div>
     </div>
 </div>
