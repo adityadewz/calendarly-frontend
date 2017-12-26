@@ -11,18 +11,18 @@ export class AppComponent {
   constructor(private router:Router){}
   title = 'app';
  
-  ngOnInit()
-  {
-    $("#sidebar").toggleClass('toggled');    
-    $('#menu-trigger').toggleClass('open');  
-    this.router.events
-    .subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-              $("#sidebar").toggleClass('toggled');    
-              $('#menu-trigger').toggleClass('open');   
+  // ngOnInit()
+  // {
+  //   $("#sidebar").toggleClass('toggled');    
+  //   $('#menu-trigger').toggleClass('open');  
+  //   this.router.events
+  //   .subscribe((event) => {
+  //     if (event instanceof NavigationEnd) {
+  //             $("#sidebar").toggleClass('toggled');    
+  //             $('#menu-trigger').toggleClass('open');   
               
-      }
-    });  } 
+  //     }
+  //   });  } 
 
 }
 
