@@ -74,6 +74,7 @@ export class CalendarComponent implements OnInit  {
      {
 
         post.start=post.date;
+        post.comments=[];
         post.title=post.name;
         post.fullDay=true;
         post._id=Date.now();

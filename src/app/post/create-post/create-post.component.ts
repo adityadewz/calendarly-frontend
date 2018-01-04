@@ -1,7 +1,7 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 declare var $:any;
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-create-post',
   templateUrl: './create-post.component.html',
@@ -11,13 +11,18 @@ export class CreatePostComponent implements OnInit {
 
   constructor(private fb:FormBuilder) { }
   createPost:FormGroup;
+  isSubmitClicked=false;
   files=[];
   @Output() formSubmitted=new EventEmitter();
     @Input() date;
     submitForm()
     {
-        console.log(this.createPost.value)
-        this.formSubmitted.emit(this.createPost.value);
+        this.isSubmitClicked=true;
+        if(this.createPost.valid)
+        {
+            console.log(this.createPost.value)
+            this.formSubmitted.emit(this.createPost.value);
+        }
     }
 
     toggleVisibility(file)
@@ -46,8 +51,9 @@ export class CreatePostComponent implements OnInit {
   
   initDatetimePicker()
   {
-      var dp=$('.date-picker').datetimepicker({
-          format: 'DD/MM/YYYY'
+      var dp=$('.date-picker1').datetimepicker({
+          format: 'DD/MM/YYYY',
+          defaultDate:new Date()
       }).on('dp.change',(e)=>
       {
           console.log(e)
@@ -56,11 +62,12 @@ export class CreatePostComponent implements OnInit {
           })
       });
 
-      var tp=$('.time-picker').datetimepicker({
-          format: 'LT'
+      var tp=$('.time-picker1').datetimepicker({
+          format: 'LT',
+          defaultDate:new Date()
       });
 
-      $('.date-picker').on('dp.change',(e)=>
+      $('.date-picker1').on('dp.change',(e)=>
       {
           console.log(e)
           this.createPost.patchValue({
@@ -68,7 +75,7 @@ export class CreatePostComponent implements OnInit {
           })
       })
 
-      $('.time-picker').on('dp.change',(e)=>
+      $('.time-picker1').on('dp.change',(e)=>
       {
           console.log(e)
           this.createPost.patchValue({
@@ -82,9 +89,9 @@ export class CreatePostComponent implements OnInit {
   {
      this.createPost=this.fb.group({
          name:this.fb.control(null,[Validators.required]),
-         description:this.fb.control(null,[Validators.required]),
-         date:this.fb.control(this.date,[Validators.required]),
-         time:this.fb.control(this.date,[Validators.required]),
+         description:this.fb.control('asd',[Validators.required]),
+         date:this.fb.control(null,[Validators.required]),
+         time:this.fb.control(null,[Validators.required]),
          topic:this.fb.group({
              name:this.fb.control("Topic 1,Topic 2",[Validators.required])
          }),
@@ -99,7 +106,10 @@ export class CreatePostComponent implements OnInit {
           this.createPost.patchValue(this.postData);
           console.log('data found')
       }
-    this.initDatetimePicker();
+  }
+  ngAfterViewInit()
+  {
+          this.initDatetimePicker();
   }
 
   uploadFiles()

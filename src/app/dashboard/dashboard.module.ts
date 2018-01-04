@@ -1,4 +1,4 @@
-import { CreatePostComponent } from '../create-post/create-post.component';
+// import { CreatePostComponent } from '../create-post/create-post.component';
 import { RouterModule } from '@angular/router';
 import { DashboardPostComponent } from './dashboard-post/dashboard-post.component';
 import { FroalaViewModule, FroalaEditorModule } from 'angular-froala-wysiwyg';

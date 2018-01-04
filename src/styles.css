@@ -3,8 +3,30 @@
 
 /* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
 
+body {
+    background-color: #F3E2A0;
+}
+
+#header,
+#top-search-wrap {
+    background-color: #4FA485;
+}
+
 body.modal-open {
     overflow: hidden;
     position: fixed;
     width: 100%;
 }
+
+.top-menu>li>a>.tmn-counts {
+    background-color: #D48134;
+    /* temporary */
+}
+
+.fc-toolbar,
+.fc th {
+    background-color: #382F34;
+}
+
+
+/* .fc th{} */

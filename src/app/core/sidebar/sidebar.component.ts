@@ -1,5 +1,5 @@
-import { EventsService } from './../events.service';
-import { appRoutes } from './../app-routing.module';
+import { EventsService } from './../../events.service';
+import { appRoutes } from './../../app-routing.module';
 import { Component, Input,OnInit,SimpleChange } from '@angular/core';
 import {Router,NavigationEnd} from '@angular/router';
 declare var $:any;

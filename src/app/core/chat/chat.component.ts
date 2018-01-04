@@ -1,4 +1,4 @@
-import { EventsService } from './../events.service';
+import { EventsService } from './../../events.service';
 import { Component, OnInit } from '@angular/core';
 declare var $:any;
 

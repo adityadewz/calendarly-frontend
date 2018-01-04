@@ -549,21 +549,21 @@ $(document).ready(function() {
 
     //Date Time Picker
     if ($('.date-time-picker')[0]) {
-        $('.date-time-picker').datetimepicker();
+        // $('.date-time-picker').datetimepicker();
     }
 
     //Time
     if ($('.time-picker')[0]) {
-        $('.time-picker').datetimepicker({
-            format: 'LT'
-        });
+        // $('.time-picker').datetimepicker({
+        //     format: 'LT'
+        // });
     }
 
     //Date
     if ($('.date-picker')[0]) {
-        $('.date-picker').datetimepicker({
-            format: 'DD/MM/YYYY'
-        });
+        // $('.date-picker').datetimepicker({
+        //     format: 'DD/MM/YYYY'
+        // });
     }
 
     /*

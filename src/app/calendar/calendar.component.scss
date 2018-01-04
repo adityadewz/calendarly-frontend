@@ -12,6 +12,10 @@ a[target=_blank] {
     overflow-y: scroll;
 }
 
+td {
+    cursor: pointer;
+}
+
 .modal-footer {
     padding-bottom: 60px;
 }
