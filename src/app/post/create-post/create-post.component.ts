@@ -17,6 +17,10 @@ export class CreatePostComponent implements OnInit {
     @Input() date;
     submitForm()
     {
+        // console.log($('.html-editor1').code())
+        this.createPost.patchValue({
+            description:$('.html-editor1').summernote('code')
+        })
         this.isSubmitClicked=true;
         if(this.createPost.valid)
         {
@@ -38,10 +42,21 @@ export class CreatePostComponent implements OnInit {
   @Input() postData;
   initJqueryData()
   {
+    this.initDatetimePicker();
+    
     $(".tagsinput").tagsinput();
-    $('.html-editor').summernote({
-        height: 150
-    });
+
+    if(this.postData)
+    {
+        $('.html-editor1').summernote('code',this.postData.description)
+    }
+    else{
+
+        $('.html-editor1').summernote({
+            height: 150
+        });
+    }
+
 
    $('file-images').hover(()=>{
        $(this).next().css({'display':'none'})
@@ -89,7 +104,7 @@ export class CreatePostComponent implements OnInit {
   {
      this.createPost=this.fb.group({
          name:this.fb.control(null,[Validators.required]),
-         description:this.fb.control('asd',[Validators.required]),
+         description:this.fb.control('asd'),
          date:this.fb.control(null,[Validators.required]),
          time:this.fb.control(null,[Validators.required]),
          topic:this.fb.group({
@@ -109,7 +124,7 @@ export class CreatePostComponent implements OnInit {
   }
   ngAfterViewInit()
   {
-          this.initDatetimePicker();
+          this.initJqueryData();
   }
 
   uploadFiles()

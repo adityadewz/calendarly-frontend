@@ -18,14 +18,32 @@ body.modal-open {
     width: 100%;
 }
 
+.label-info {
+    background-color: #D48134;
+}
+
 .top-menu>li>a>.tmn-counts {
     background-color: #D48134;
     /* temporary */
 }
 
+#profile-main .pm-body {
+    min-height: 900px;
+}
+
 .fc-toolbar,
 .fc th {
     background-color: #382F34;
+}
+
+.btn-success {
+    color: #ffffff;
+    background-color: #4FA485;
+    border-color: #4FA485;
+}
+
+.modal .modal-body {
+    padding: 0 26px 40px;
 }
 
 

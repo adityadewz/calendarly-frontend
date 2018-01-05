@@ -243,6 +243,8 @@ export class CalendarComponent implements OnInit  {
                   $('#getEnd').val(end);
               },
               dayClick: (date, jsEvent, view)=> {
+                  console.log(date)
+                  this.date=date.toDate();
                   this.isEditMode=false;
                 // this.createPost.patchValue({
                 //     date:date.toDate(),
@@ -336,6 +338,12 @@ export class CalendarComponent implements OnInit  {
         //         });
     //   });    
      }
+
+    //  ngOnDestroy()
+    //  {
+    //        this.eventsService.toggleSidebar.next()
+    //  }
+   
 
 
 }

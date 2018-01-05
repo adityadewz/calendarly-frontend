@@ -14,6 +14,10 @@ export class SidebarComponent implements OnInit {
   constructor(private router:Router,private eventsService:EventsService) { }
   routes=appRoutes;
   ngOnInit() {
+    // this.eventsService.toggleSidebar.subscribe(()=>{
+    //   $('#sidebar').toggleClass('toggled');
+    //   $('#header').toggleClass('sidebar-toggled')
+    // })
   }
 
 

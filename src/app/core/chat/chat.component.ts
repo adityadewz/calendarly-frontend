@@ -12,10 +12,10 @@ export class ChatComponent implements OnInit {
   constructor(private eventsService:EventsService) { }
 
   ngOnInit() {
-    this.eventsService.toggleChat.subscribe(()=>{
-      // console.log('toggled',e)
-      $('#chat').toggleClass('open')
-    })
+    // this.eventsService.toggleChat.subscribe(()=>{
+    //   // console.log('toggled',e)
+    //   $('#chat').toggleClass('open')
+    // })
   }
 
 }

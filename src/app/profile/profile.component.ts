@@ -1,3 +1,4 @@
+import { EventsService } from './../events.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private eventsService:EventsService) { }
 
   ngOnInit() {
+    // this.eventsService.toggleSidebar.next()
+  }
+
+  ngOnDestroy()
+  {
+        this.eventsService.toggleSidebar.next()
   }
 
 }

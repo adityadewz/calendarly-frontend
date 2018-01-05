@@ -1,4 +1,6 @@
-<h6 *ngIf="isSubmitClicked&&createPost.touched&&createPost.invalid" class="danger">Fields marked in red are mandatory</h6>
+<h6 *ngIf="isSubmitClicked&&createPost.touched&&createPost.invalid" class="danger">
+
+    Fields marked in red are mandatory</h6>
 <form [formGroup]="createPost" (ngSubmit)="submitForm()">
 
     <div class="row">
@@ -110,7 +112,7 @@
 
                 <div class="card-body">
 
-                    <div class="html-editor"></div>
+                    <div class="html-editor1"></div>
 
 
                 </div>

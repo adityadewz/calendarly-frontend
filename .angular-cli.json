@@ -32,7 +32,7 @@
             "../node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css",
             "../node_modules/froala-editor/css/froala_style.min.css",
             "../node_modules/font-awesome/css/font-awesome.css",
-            "styles.css"
+            "styles.scss"
         ],
         "scripts": [
             "assets/js/jquery-2.1.1.min.js",
