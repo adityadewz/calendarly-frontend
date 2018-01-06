@@ -60,7 +60,7 @@ Shared modules such as header, sidebar, chat are contained in core module.
     - Contains form which is shared in seveal other components.
     - Used to modularize the code.
     - Contains output property 'formSubmitted' and 'formUpdated' and input property 'postData'.
-    - 
-
-
+    
+3. Post View Component:
+    - Contains instance of createPost which populates data when clicked on an existing calendarly post.
     
