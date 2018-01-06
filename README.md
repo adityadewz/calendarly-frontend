@@ -26,3 +26,38 @@ Before running the tests make sure you are serving the app via `ng serve`.
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Compilers used
+
+1. The project is compiled using webpack. 
+2. Gulp is used for temporary frontend tasks.
+
+## Project Structure 
+
+1. The main app bundling module is contained in app folder under the name app.module.
+
+## Module structure
+
+Feature modules:
+1. Dashboard
+2. Calendar
+3. Profile
+4. Post
+5. Core
+6. Layout
+
+The core module contains the major shared modules and re-exports them to be made available to all.
+
+Shared modules such as header, sidebar, chat are contained in core module.
+
+## Post Module (feature module)
+
+1. It contains 2 components:
+    - Create Post Component
+    - Post-View Component
+    
+2. Create Post Component:
+    - Contains form which is shared in seveal other components.
+    - Used to modularize the code.
+    - Contains output event 'Form Submitted' and 'Form updated'.
+    - 

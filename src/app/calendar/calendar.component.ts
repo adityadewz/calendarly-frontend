@@ -75,7 +75,7 @@ export class CalendarComponent implements OnInit  {
 
         post.start=post.date;
         post.comments=[];
-        post.title=post.name;
+        // post.title=post.name;
         post.fullDay=true;
         post._id=Date.now();
         post.saved=true;
@@ -184,13 +184,10 @@ export class CalendarComponent implements OnInit  {
 
 
     ngOnInit() {
+        console.log(this.calendarService.getPosts(),'posts')
         this.initJqueryData();
-        // this.initForm();
         console.log('Hello')
 
-        // this.createPost.get('time').valueChanges.subscribe(e=>{
-        //     console.log(e)
-        // })
   }
      
      initCalendar()
@@ -222,18 +219,7 @@ export class CalendarComponent implements OnInit  {
               events: this.calendarService.getPosts(),
               eventClick: (calEvent, jsEvent, view)=> {
                   this.router.navigate(['/','post',calEvent._id])
-                // this.isEditMode=true;
-                // this.currentPost=calEvent;
-                // console.log(calEvent)
-                // console.log(jsEvent)
-
-                // this.createPost.patchValue(this.calendarService.getPost(calEvent))
-
-                // $('.modal').modal('toggle');
-                //   // change the border color just for fun
-                //         $(this).css('border-color', 'red');
-                
-                    },
+              },
                
               //On Day Select
               select: (start, end, allDay) =>{
@@ -246,19 +232,11 @@ export class CalendarComponent implements OnInit  {
                   console.log(date)
                   this.date=date.toDate();
                   this.isEditMode=false;
-                // this.createPost.patchValue({
-                //     date:date.toDate(),
-                //     time:date.toDate()
-                // })
-
-        // change the day's background color just for fun
         $(this).css('background-color', 'red');
 
                 }
               });
 
-    
-          //Create and ddd Action button with dropdown in Calendar header. 
           var actionMenu = '<ul class="actions actions-alt" id="fc-actions">' +
                               '<li class="dropdown">' +
                                   '<a href="" data-toggle="dropdown"><i class="md md-more-vert"></i></a>' +
@@ -292,33 +270,6 @@ export class CalendarComponent implements OnInit  {
                   $(this).addClass('selected');
               });
           })();
-      
-          //Add new Event
-        //   $('body').on('click', '#addEvent', function(){
-        //       var eventName = $('#eventName').val();
-        //       var tagColor = $('.event-tag > span.selected').attr('data-tag');
-                  
-        //       if (eventName != '') {
-        //           //Render Event
-        //           $('#calendar').fullCalendar('renderEvent',{
-        //               title: eventName,
-        //               start: $('#getStart').val(),
-        //               end:  $('#getEnd').val(),
-        //               allDay: true,
-        //               className: tagColor
-                      
-        //           },true ); //Stick the event
-                  
-        //           $('#addNew-event form')[0].reset()
-        //           $('#addNew-event').modal('hide');
-        //       }
-              
-        //       else {
-        //           $('#eventName').closest('.form-group').addClass('has-error');
-        //       }
-        //   });   
-    
-          //Calendar views
           $('body').on('click', '#fc-actions [data-view]', function(e){
               e.preventDefault();
               var dataView = $(this).attr('data-view');
@@ -326,24 +277,7 @@ export class CalendarComponent implements OnInit  {
               $('#fc-actions li').removeClass('active');
               $(this).parent().addClass('active');
               cId.fullCalendar('changeView', dataView);  
-          });
-    
-        //   $('.date-picker').datetimepicker({
-        //     format: 'DD/MM/YYYY'
-        // });
-    
-        // $('.date-time-picker').datetimepicker();
-        // $('.time-picker').datetimepicker({
-        //             format: 'LT'
-        //         });
-    //   });    
+          }); 
      }
-
-    //  ngOnDestroy()
-    //  {
-    //        this.eventsService.toggleSidebar.next()
-    //  }
-   
-
 
 }

@@ -2,6 +2,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 declare var $:any;
 import * as moment from 'moment';
+import * as _ from 'underscore';
 @Component({
   selector: 'app-create-post',
   templateUrl: './create-post.component.html',
@@ -11,20 +12,24 @@ export class CreatePostComponent implements OnInit {
 
   constructor(private fb:FormBuilder) { }
   createPost:FormGroup;
+  editMode=false;
   isSubmitClicked=false;
   files=[];
+  @Output() exit=new EventEmitter();
   @Output() formSubmitted=new EventEmitter();
-    @Input() date;
+  @Output() formUpdated=new EventEmitter();
+  @Input() date;
     submitForm()
     {
         // console.log($('.html-editor1').code())
         this.createPost.patchValue({
-            description:$('.html-editor1').summernote('code')
+            description:$('.html-editor1').summernote().code()
         })
         this.isSubmitClicked=true;
         if(this.createPost.valid)
         {
             console.log(this.createPost.value)
+            this.createPost.value.start=this.createPost.value.date;
             this.formSubmitted.emit(this.createPost.value);
         }
     }
@@ -32,6 +37,11 @@ export class CreatePostComponent implements OnInit {
     toggleVisibility(file)
     {
         file.isVisible=!file.isVisible
+    }
+
+    cancel()
+    {
+        this.exit.emit(null);
     }
 
     deleteFile(index)
@@ -48,7 +58,9 @@ export class CreatePostComponent implements OnInit {
 
     if(this.postData)
     {
-        $('.html-editor1').summernote('code',this.postData.description)
+        $('.html-editor1').summernote('code',this.postData.description,{
+            height:150
+        });
     }
     else{
 
@@ -67,7 +79,7 @@ export class CreatePostComponent implements OnInit {
   initDatetimePicker()
   {
       var dp=$('.date-picker1').datetimepicker({
-          format: 'DD/MM/YYYY',
+          format: 'MM/DD/YYYY',
           defaultDate:new Date()
       }).on('dp.change',(e)=>
       {
@@ -103,7 +115,7 @@ export class CreatePostComponent implements OnInit {
   private initForm()
   {
      this.createPost=this.fb.group({
-         name:this.fb.control(null,[Validators.required]),
+         title:this.fb.control(null,[Validators.required]),
          description:this.fb.control('asd'),
          date:this.fb.control(null,[Validators.required]),
          time:this.fb.control(null,[Validators.required]),
@@ -113,15 +125,34 @@ export class CreatePostComponent implements OnInit {
          tags:this.fb.control("Tag A,Tag B",[Validators.required])
      })
   }
+
+  updateForm()
+  {
+      var val=this.createPost.value;
+      _.extend(this.postData,val)
+    // val.start=val.date;    
+    // val._id=this.postData._id;
+    // val.comments=[];
+    this.formUpdated.emit(this.postData);
+    
+  }
+
   ngOnInit() {
       console.log(this.date)
     this.initForm();
     if(this.postData)
       {
+          this.editMode=true;
           this.createPost.patchValue(this.postData);
-          console.log('data found')
+          console.log('data found');
       }
   }
+
+//   exit()
+//   {
+//     this.route
+//   }
+  
   ngAfterViewInit()
   {
           this.initJqueryData();

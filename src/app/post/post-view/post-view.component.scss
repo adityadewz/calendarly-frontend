@@ -41,3 +41,11 @@
         padding: 20px;
     }
 }
+
+.fa-trash {
+    font-size: 15px;
+}
+
+.btn:not(.btn-link):not(.btn-float):not(.command-edit):not(.command-delete):not(.selectpicker) {
+    box-shadow: none;
+}

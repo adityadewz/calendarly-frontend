@@ -100,6 +100,25 @@ export class CalendarService {
     })
   }
 
+  // deleteComment(comment)
+  // {
+    
+  // }
+
+  savePost(post)
+  {
+    var index;
+    this.posts.forEach((p,i)=>{
+      if(p._id===post._id)
+      {
+        index=i;
+      } 
+    })
+
+    this.posts[index]=post;
+    
+  }
+
   addPost(event)
   {
     this.posts.push(event)
@@ -107,7 +126,7 @@ export class CalendarService {
 
   getPost(postId)
   {
-    return this.posts.filter(e=>e._id===postId)[0]
+    return this.posts.filter(e=>e._id===postId)[0];
   }
 
   updatePost(post)

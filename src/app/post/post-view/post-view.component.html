@@ -100,7 +100,7 @@
 
 
             <div class="pmb-block">
-                <app-create-post [postData]="post" id="attachFile"></app-create-post>
+                <app-create-post [postData]="post" (exit)="exit()" id="attachFile" (formUpdated)="formUpdated($event)" (formSubmitted)="formSubmitted($event)"></app-create-post>
             </div>
             <hr>
             <div class="timeline">
@@ -133,7 +133,7 @@
                                                 <a>Edit</a>
                                             </li>
                                             <li>
-                                                <a>Delete</a>
+                                                <a (click)="deleteComment(post)">Delete</a>
                                             </li>
 
                                         </ul>
