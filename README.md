@@ -50,6 +50,21 @@ The core module contains the major shared modules and re-exports them to be made
 
 Shared modules such as header, sidebar, chat are contained in core module.
 
+## Layout Module
+
+1. Used for scaffolding the application's major routing logic.
+2. Imports Core Module.
+3. Contains the major layout components such as the header, sidebar, chatbar.
+4. Contains the app's major routing module.
+
+## Calendar Module
+
+1. Our app's default opening page.
+2. Contains the fullCalendar.js(Jquery UI plugin) for the user to interact and add a post.
+3. Provides features such as 'Add a post', 'Edit Post'.
+4. Contains an instance of createPost component for adding a post to the calendar.
+5. Provides a service 'CalendarService' to allow contain related to calendar which can then be injected into onther modules when required.
+
 ## Post Module (feature module)
 
 1. It contains 2 components:
@@ -63,4 +78,9 @@ Shared modules such as header, sidebar, chat are contained in core module.
     
 3. Post View Component:
     - Contains instance of createPost which populates data when clicked on an existing calendarly post.
+    - Under this component the user can:
+        - Watch/Unwatch a post.
+        - Delete the post.
+        - Add Attatchments to the post.
+        - Post comments on the post.
     
