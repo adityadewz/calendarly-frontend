@@ -59,5 +59,8 @@ Shared modules such as header, sidebar, chat are contained in core module.
 2. Create Post Component:
     - Contains form which is shared in seveal other components.
     - Used to modularize the code.
-    - Contains output event 'Form Submitted' and 'Form updated'.
+    - Contains output property 'formSubmitted' and 'formUpdated' and input property 'postData'.
     - 
+
+
+    
